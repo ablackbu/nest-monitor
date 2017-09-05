@@ -12,3 +12,10 @@ The basic logic is simply this.
 
 
 The current state is initial testing/proof of concept. 
+
+
+Info about the sensor setup can be found here.
+
+    
+https://www.youtube.com/watch?v=aEnS0-Jy2vE
+http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
