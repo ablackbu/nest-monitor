@@ -5,12 +5,17 @@
   "main": "nest-monitor.js",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "eslint": "^4.6.1",
     "unofficial-nest-api": "^0.1.4",
     "util": "^0.10.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sinon": "^3.2.1",
+    "lab": "^14.2.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node nest-monitor.js",
+    "test": "./node_modules/.bin/lab -c -v --shuffle --lint -P lab"
   },
   "author": "ablackbu",
   "license": "ISC"

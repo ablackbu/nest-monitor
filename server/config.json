@@ -1,0 +1,9 @@
+{
+    "username" : "username@domain.com",
+    "password" : "passord",
+    "sensorFile" : "../w1_slave_test",
+    "sensorAdjustment" : 0.5,
+    "currentVsTargetTolerance" : 0.5, 
+    "sensorVsNestTolerance" : 2.0,
+    "nestCheckFrequency" : 5
+}
