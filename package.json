@@ -5,13 +5,14 @@
   "main": "nest-monitor.js",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "eslint": "^4.6.1",
+    "logger": "0.0.1",
     "unofficial-nest-api": "^0.1.4",
     "util": "^0.10.3"
   },
   "devDependencies": {
-    "sinon": "^3.2.1",
-    "lab": "^14.2.2"
+    "eslint": "^4.6.1",
+    "lab": "^14.2.2",
+    "sinon": "^3.2.1"
   },
   "scripts": {
     "start": "node nest-monitor.js",
