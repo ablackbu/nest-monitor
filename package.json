@@ -14,7 +14,7 @@
     "lab": "^14.2.2"
   },
   "scripts": {
-    "run": "node nest-monitor.js",
+    "start": "node nest-monitor.js",
     "test": "./node_modules/.bin/lab -c -v --shuffle --lint -P lab"
   },
   "author": "ablackbu",

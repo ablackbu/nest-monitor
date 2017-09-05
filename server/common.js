@@ -15,7 +15,7 @@ module.exports.getSensorTemperature  = (sensorFile) => {
 
 module.exports.getConfig = () => {
     return new Promise ((resolve, reject) => {
-        fs.readFile('./config.json', (err, data) => {
+        fs.readFile('./server/config.json', (err, data) => {
             if (err) reject(err);
             resolve(JSON.parse(data));
         });

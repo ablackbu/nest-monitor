@@ -1,6 +1,6 @@
 //Dependencies
-const common = require('./common');
-const nest = require('./nest');
+const common = require('./server/common');
+const nest = require('./server/nest');
 
 var interval = 5*60*1000; //In ms, default to 5 minutes
 
