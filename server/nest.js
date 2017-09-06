@@ -24,7 +24,7 @@ const calculateAndSetFanStatus = (config, data) => {
     for (var deviceId in data.device) {
       if (data.device.hasOwnProperty(deviceId)) {
         var device = data.shared[deviceId];
-        common.calculateFanStatus(device, sensorTemp) ? nest.setFanModeOn() :
+        common.calculateFanStatus(config, device, sensorTemp) ? nest.setFanModeOn() :
           nest.setFanModeAuto();
         return;
       }

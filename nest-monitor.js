@@ -5,10 +5,11 @@ var logger = require('logger').createLogger();
 const common = require('./server/common');
 const nest = require('./server/nest');
 
+const configPath = './server/config.json';
 var interval = 5 * 60 * 1000; //In ms, default to 5 minutes
 
 const iteration = () => {
-  common.getConfig().then((config) => {
+  common.getConfig(configPath).then((config) => {
     interval = config.nestCheckFrequency * 60 * 1000;
     nest.fetchStatus(config);
   }).catch((err) => {

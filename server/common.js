@@ -1,8 +1,10 @@
 'use strict';
 
-var logger = require('logger').createLogger();
+
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'));
+const util = require('util');
+var logger = require('logger').createLogger();
 
 module.exports.getSensorTemperature = (sensorFile) => {
   return new Promise((resolve, reject) => {
@@ -16,44 +18,43 @@ module.exports.getSensorTemperature = (sensorFile) => {
   });
 };
 
-module.exports.getConfig = () => {
+module.exports.getConfig = (configPath) => {
   return new Promise((resolve, reject) => {
-    fs.readFile('./server/config.json', (err, data) => {
-      if (err) {reject(err);}
+    fs.readFileAsync(configPath).then((data) => {
       resolve(JSON.parse(data));
+    }).catch((err) => {
+      reject(err);
     });
   });
 };
 
-module.exports.calculateFanStatus = (device, sensor) => {
+module.exports.calculateFanStatus = (config, device, sensor) => {
 
   var targetTemp = device.target_temperature;
   var currentTemp = device.current_temperature;
-  var hvacFan = device.hvac_fan_state;
   var sensorTemp = sensor;
 
-  logger.info('targetTemp: ' + targetTemp);
-  logger.info('currentTemp: ' + currentTemp);
-  logger.info('hvacFan: ' + hvacFan);
-  logger.info('sensorTemp: ' + sensorTemp);
+  logger.info(util.format('currentTemp: %s targetTemp: %s sensorTemp :%s fanState: %s currentVsTargetTol: %s sensorVsNestTol: %s ',
+    currentTemp, targetTemp, sensorTemp, device.hvac_fan_state, config.currentVsTargetTolerance, config.sensorVsNestTolerance));
 
   if (device.auto_away === 1) {
     logger.info('Auto away active ignoring temperatures.');
     return false;
   }
+  //todo: check if manually away 
 
-  if (Math.abs(targetTemp - currentTemp) > currentVsTargetTolerance) {
-    logger.info('The current temperature and target temperature are too far apart. This means nest will automatically run the fan soon. Ignoring sensor temperature.');
+  if (Math.abs(targetTemp - currentTemp) > config.currentVsTargetTolerance) {
+    logger.info('The current temperature and target temperature are too far apart. Ne will automatically run the fan soon. Ignoring sensor temperature.');
     return false;
   }
 
   //We test against the target temperature not the current temperature because current temperature will have less predictable shifts. 
-  if (Math.abs(targetTemp - (sensorTemp + sensorAdjustment)) > sensorVsNestTolerance) {
-    logger.info('The target temperature and sensor temperature are too far apart. Nest should run the fan.');
+  if (Math.abs(targetTemp - (sensorTemp + config.sensorAdjustment)) > config.sensorVsNestTolerance) {
+    logger.info('The target temperature and sensor temperature are too far apart. We should run the fan.');
     return true;
   }
-  logger.info('The target temperature and sensor temperature are too close. Nest should switch the fan to auto.');
-  return false;
 
+  logger.info('The target temperature and sensor temperature are too close. We should switch the fan to auto.');
+  return false;
 
 };

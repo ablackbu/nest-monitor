@@ -1,0 +1,9 @@
+{
+    "username" : "user@domain.com",
+    "password" : "password",
+    "sensorFile" : "./sensor/path",
+    "sensorAdjustment" : 0.5,
+    "currentVsTargetTolerance" : 0.5, 
+    "sensorVsNestTolerance" : 2.0,
+    "nestCheckFrequency" : 5
+}
