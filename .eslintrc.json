@@ -7,7 +7,7 @@
         "indent": [2, 2],
         "strict": [2, "global"],
         "quotes": [2, "single"],
-        "no-console": 1,
+        "no-console": 0,
         "key-spacing": [1, {"beforeColon": false, "afterColon": true}],
         "dot-notation": 1,
         "eol-last": 1,

@@ -1,16 +1,18 @@
 'use strict';
 
-var logger = require('logger').createLogger();
 const Promise = require('bluebird');
 const nest = Promise.promisifyAll(require('unofficial-nest-api'));
 const common = require('./common');
 
-module.exports.fetchStatus = (config) => {
-  login(config).then((data) => {
-    //can't use promisify for this function; 
-    //it doesn't satisify the contract required by bluebird
-    nest.fetchStatus((data) => {
-      calculateAndSetFanStatus(config, data);
+module.exports.requestNestDataAndSetFan = (config) => {
+  return new Promise((resolve, reject) => {
+    login(config).then((data) => {
+      //can't use promisify for this function; 
+      //it doesn't satisify the contract required by bluebird
+      nest.fetchStatus((data) => {
+        calculateAndSetFanStatus(config, data);
+        resolve();
+      });
     });
   });
 };
@@ -29,8 +31,6 @@ const calculateAndSetFanStatus = (config, data) => {
         return;
       }
     }
-  }).catch((err) => {
-    logger.error('Error caught in calculateAndSetFanStatus. ', err);
   });
 
 

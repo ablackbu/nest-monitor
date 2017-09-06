@@ -2,10 +2,8 @@
 
 const Code = require('code');
 const Lab = require('lab');
-const sinon = require('sinon');
 const lab = module.exports.lab = Lab.script();
 const expect = Code.expect;
-const Promise = require('bluebird');
 
 const testee = require('../../server/common');
 

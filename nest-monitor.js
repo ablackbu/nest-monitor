@@ -1,7 +1,6 @@
 'use strict';
 
 //Dependencies
-var logger = require('logger').createLogger();
 const common = require('./server/common');
 const nest = require('./server/nest');
 
@@ -11,9 +10,9 @@ var interval = 5 * 60 * 1000; //In ms, default to 5 minutes
 const iteration = () => {
   common.getConfig(configPath).then((config) => {
     interval = config.nestCheckFrequency * 60 * 1000;
-    nest.fetchStatus(config);
+    nest.requestNestDataAndSetFan(config);
   }).catch((err) => {
-    logger.error('Error caught in iteration. ', err);
+    log.error('Error caught in iteration. ', err);
   });
 };
 
