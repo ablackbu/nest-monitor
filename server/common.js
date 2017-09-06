@@ -41,7 +41,6 @@ module.exports.calculateFanStatus = (config, device, sensor) => {
     logger.info('Auto away active ignoring temperatures.');
     return false;
   }
-  //todo: check if manually away 
 
   if (Math.abs(targetTemp - currentTemp) > config.currentVsTargetTolerance) {
     logger.info('The current temperature and target temperature are too far apart. Ne will automatically run the fan soon. Ignoring sensor temperature.');
