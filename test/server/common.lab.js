@@ -65,6 +65,15 @@ lab.experiment('server/common', () => {
     config.sensorVsNestTolerance = 2.0;
     config.sensorAdjustment = 0.0;
 
+
+    lab.test('isOff', (done) => {
+      var device = {};
+      var sensor = 10;
+      device.target_temperature_type = 'off'; // eslint-disable-line camelcase
+      expect(testee.calculateFanStatus(config, device, sensor)).to.be.false();
+      done();
+    });
+
     lab.test('isAutoAway', (done) => {
       var device = {};
       var sensor = 10;
