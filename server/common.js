@@ -36,13 +36,18 @@ module.exports.calculateFanStatus = (config, device, sensor) => {
   console.log(util.format('currentTemp: %s targetTemp: %s sensorTemp :%s fanState: %s currentVsTargetTol: %s sensorVsNestTol: %s ',
     currentTemp, targetTemp, sensorTemp, device.hvac_fan_state, config.currentVsTargetTolerance, config.sensorVsNestTolerance));
 
+  if (device.target_temperature_type === 'off') {
+    console.log('Nest is off. Ignoring temperatures.');
+    return false;
+  }
+
   if (device.auto_away === 1) {
-    console.log('Auto away active ignoring temperatures.');
+    console.log('Auto away active. Ignoring temperatures.');
     return false;
   }
 
   if (Math.abs(targetTemp - currentTemp) > config.currentVsTargetTolerance) {
-    console.log('The current temperature and target temperature are too far apart. Ne will automatically run the fan soon. Ignoring sensor temperature.');
+    console.log('The current temperature and target temperature are too far apart. We will automatically run the fan soon. Ignoring sensor temperature.');
     return false;
   }
 
