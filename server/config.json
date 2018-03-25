@@ -1,7 +1,7 @@
 {
-    "username" : "username@domain.com",
-    "password" : "passord",
-    "sensorFile" : "../w1_slave_test",
+    "deviceId" : "someDeviceId",
+    "token" : "c.someToken",
+    "sensorFile" : "./someSensorFile",
     "sensorAdjustment" : 0.5,
     "currentVsTargetTolerance" : 0.5, 
     "sensorVsNestTolerance" : 2.0,

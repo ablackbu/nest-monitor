@@ -1,12 +1,13 @@
 {
   "name": "nest-monitor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "App to trigger nest fan to normalize temperature delta between floors.",
   "main": "nest-monitor.js",
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "unofficial-nest-api": "^0.1.4",
-    "util": "^0.10.3"
+    "bluebird": "^3.5.1",
+    "lodash": "^4.17.5",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "eslint": "^4.6.1",

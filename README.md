@@ -11,7 +11,7 @@ The basic logic is simply this.
 - If the nest isn't doing any of those and the pi sensor is far enough away in temperature from the nest temperature then we will run the fan, else not.  *Note about this current implementation the ordeirng of these matters because I use the target temperature not the current temperature as current will always fluctuate slightly for example 20c target might be 19.5 actual which makes somethings harder to work with. I may change my veiw of this in the future.*
 
 
-The current state is live testing.
+I've updated this to use the official nest api oauth and all. It doesn't currently do the authorization for you but will work provided a token and device id
 
 
 Info about the sensor setup can be found here:
